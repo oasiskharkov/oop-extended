@@ -1,10 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <tuple>
-#include <optional>
+#include "stdafx.h"
 
 struct Person
 {

@@ -1,9 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <optional>
-#include <string>
-#include <iomanip>
+#include "stdafx.h"
 
 struct PhoneNumber
 {
