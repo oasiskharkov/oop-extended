@@ -51,11 +51,11 @@ std::tuple<std::string, std::optional<PhoneNumber>> PhoneBook::GetPhoneNumber(co
 	std::copy_if(std::begin(m_phoneBook), std::end(m_phoneBook), std::back_inserter(result),
 		[surname](const auto& record) { return record.first.m_surname == surname; });
 	
-	if (result.size() == 0)
+	if (0 == result.size())
 	{
 		return std::tie("not found", std::nullopt);
 	}
-	else if (result.size() == 1)
+	else if (1 == result.size())
 	{
 	    return std::tie("", result[0].second);
 	}

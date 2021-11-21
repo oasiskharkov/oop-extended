@@ -11,9 +11,8 @@ struct PhoneNumber
 
 	bool operator < (const PhoneNumber& number) const
 	{
-		auto self = std::tie(m_countryCode, m_cityCode, m_number, m_addNumber);
-		auto other = std::tie(number.m_countryCode, number.m_cityCode, number.m_number, number.m_addNumber);
-		return self < other;
+		return std::tie(m_countryCode, m_cityCode, m_number, m_addNumber) <
+			std::tie(number.m_countryCode, number.m_cityCode, number.m_number, number.m_addNumber);
 	}
 
 	bool operator == (const PhoneNumber& number) const

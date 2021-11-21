@@ -10,9 +10,7 @@ struct Person
 
 	bool operator < (const Person& person) const
 	{
-		auto self = std::tie(m_surname, m_name, m_patronymic);
-		auto pers = std::tie(person.m_surname, person.m_name, person.m_patronymic);
-		return self < pers;
+		return std::tie(m_surname, m_name, m_patronymic) < std::tie(person.m_surname, person.m_name, person.m_patronymic);
 	}
 
 	bool operator == (const Person& person) const
