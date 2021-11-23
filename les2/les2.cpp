@@ -137,14 +137,9 @@ int main()
 		std::cout << "Vowels count = " << fr.CountThird() << std::endl;
 		t.print();
 
-		t.start("in");
+		t.start("getline");
 		std::cout << "Vowels count = " << fr.CountFourth("War_and_Peace.txt") << std::endl;
 		t.print();
-
-		t.start("getline");
-		std::cout << "Vowels count = " << fr.CountFifth("War_and_Peace.txt") << std::endl;
-		t.print();
-
 	}
 	catch (const std::exception& ex)
 	{
