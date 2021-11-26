@@ -1,6 +1,6 @@
-#include "fileReader.h"
+#include "VowelCounter.h"
 
-FileReader::FileReader(const std::string& filePath)
+VowelCounter::VowelCounter(const std::string& filePath)
 {
 	std::ifstream in(filePath);
 	if(in.is_open())
@@ -20,7 +20,7 @@ FileReader::FileReader(const std::string& filePath)
 	}
 }
 
-int FileReader::CounFirst() const
+int VowelCounter::CounFirst() const
 {
 	int sum = 0;
 	for (const auto& word : m_words)
@@ -30,7 +30,7 @@ int FileReader::CounFirst() const
 	return sum;
 }
 
-int FileReader::CountSecond() const
+int VowelCounter::CountSecond() const
 {
 	int sum = 0;
 	for (const auto& word : m_words)
@@ -46,7 +46,7 @@ int FileReader::CountSecond() const
 	return sum;
 }
 
-int FileReader::CountThird() const
+int VowelCounter::CountThird() const
 {
 	int sum = 0;
 	for (const auto& word : m_words)
@@ -61,7 +61,7 @@ int FileReader::CountThird() const
 	return sum;
 }
 
-int FileReader::CountFourth(const std::string& filePath) const
+int VowelCounter::CountFourth(const std::string& filePath) const
 {
 	std::ifstream in(filePath);
 	int sum = 0;
@@ -87,7 +87,7 @@ int FileReader::CountFourth(const std::string& filePath) const
 	}
 }
 
-bool FileReader::IsVowel(char symbol) const
+bool VowelCounter::IsVowel(char symbol) const
 {
 	return m_vowels.find(symbol) != m_vowels.end();
 }
