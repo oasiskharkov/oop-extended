@@ -13,7 +13,8 @@ public:
     Iterator(const Iterator& it);
 
     bool operator != (Iterator const& other) const;
-    bool operator == (Iterator const& other) const; 
+    bool operator == (Iterator const& other) const;
+
     typename Iterator::reference operator * () const
     {
         return *p;

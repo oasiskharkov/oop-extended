@@ -2,7 +2,7 @@
 
 Container::Container(std::initializer_list<int> values) :
     m_size{ values.size() },
-    m_data(new int[m_size], [](int* p) { delete[] p; })
+    m_data{ new int[m_size], [](int* p) { delete[] p; } }
 {
     std::copy(values.begin(), values.end(), m_data.get());
 }
