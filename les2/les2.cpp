@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-#include "fileReader.h"
+#include "vowelCounter.h"
 #include "timer.h"
 
 template <typename T>
@@ -123,22 +123,22 @@ int main()
 	// ====== TASK #3 ======
 	try
 	{
-		FileReader fr{ "War_and_Peace.txt" };
+		VowelCounter vc{ "War_and_Peace.txt" };
 
 		Timer t("count_if");
-		std::cout << "Vowels count = " << fr.CounFirst() << std::endl;
+		std::cout << "Vowels count = " << vc.CounFirst() << std::endl;
 		t.print();
 
 		t.start("for");
-		std::cout << "Vowels count = " << fr.CountSecond() << std::endl;
+		std::cout << "Vowels count = " << vc.CountSecond() << std::endl;
 		t.print();
 
 		t.start("find_first_of");
-		std::cout << "Vowels count = " << fr.CountThird() << std::endl;
+		std::cout << "Vowels count = " << vc.CountThird() << std::endl;
 		t.print();
 
 		t.start("getline");
-		std::cout << "Vowels count = " << fr.CountFourth("War_and_Peace.txt") << std::endl;
+		std::cout << "Vowels count = " << vc.CountFourth("War_and_Peace.txt") << std::endl;
 		t.print();
 	}
 	catch (const std::exception& ex)

@@ -7,10 +7,10 @@
 #include <algorithm>
 #include <unordered_set>
 
-class FileReader
+class VowelCounter 
 {
 public:
-	FileReader(const std::string& filePath);
+	VowelCounter(const std::string& filePath);
 	int CounFirst() const;
 	int CountSecond() const;
 	int CountThird() const;
