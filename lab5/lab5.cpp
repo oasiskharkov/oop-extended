@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 #include <map>
+#include <algorithm>
+#include <locale>
 
 template <typename Iter, typename ValueType>
 void print_uniques(Iter first, Iter last)
@@ -36,7 +38,7 @@ int main()
     {
         std::string text{ std::istreambuf_iterator<char>{in}, {} };
         size_t start{ 0 };
-        while ((start = text.find_first_not_of(" .!?\n\t", start)) != std::string::npos)
+        while ((start = text.find_first_not_of(" .!?\n\t\r\f\v", start)) != std::string::npos)
         {
             std::string sentence;
             size_t end = text.find_first_of(".!?", start);
@@ -49,6 +51,11 @@ int main()
                 sentence = text.substr(start, end - start);
             }
             start = end;
+            auto it = std::unique_copy(sentence.begin(), sentence.end(), sentence.begin(), [](char a, char b) { return a == ' ' and b == ' '; });
+            sentence.resize(it - sentence.begin());
+            std::locale loc;
+            it = std::remove_if(sentence.begin(), sentence.end(), [loc](char a) { return std::isspace(a, loc) && a != ' '; });
+            sentence.resize(it - sentence.begin());
             dict.emplace(sentence.length(), sentence);
         }
         in.close();
