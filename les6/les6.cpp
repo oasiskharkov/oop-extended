@@ -30,19 +30,19 @@ void print_char()
 
 __int64 find_prime(int count)
 {
-    __int64 val = 0;
-    int prev = 0;
-    int index = 1;
+    __int64 val{ 0 };
+    int prev{ 0 };
+    int index{ 1 };
     while(true)
     {
-        bool is_prime = true;
+        bool is_prime{ true };
         if (val <= 1 || (val != 2 && !(val % 2)))
         {
             is_prime = false;
         }
         else
         {
-            int max_dev = (int)sqrt(val);
+            int max_dev = static_cast<int>(sqrt(val));
             for (__int64 dev{ 3 }; dev <= max_dev; dev += 2)
             {
                 if (!(val % dev))
@@ -67,7 +67,7 @@ __int64 find_prime(int count)
 #elif defined (_WIN32) || defined (_WIN64)
                 std::system("cls");
 #endif    
-                std::cout << "Progress: " << std::fixed << std::setprecision(2) << percent << "%" << std::endl;
+                std::cout << "Progress: " << percent << "%" << std::endl;
             }
 
             if (index == count)
@@ -83,7 +83,7 @@ __int64 find_prime(int count)
 int main()
 {
     // ====== TASK #1 ====== 
-    std::thread thr1{print_int};
+    std::thread thr1{ print_int };
     std::thread thr2{ print_char };
 
     if(thr1.joinable())
@@ -99,7 +99,7 @@ int main()
     std::cout << "Input index of prime: ";
     int index;
     std::cin >> index;
-    __int64 value = 0;
+    __int64 value{ 0 };
     std::thread thr3{ [&value, index]() { value = find_prime(index); } };
 
     if (thr3.joinable())
@@ -126,7 +126,6 @@ int main()
     srand(static_cast<unsigned>(time(nullptr)));
     std::generate_n(goods.begin(), 10, []() { return rand() % 1000;  });
     
-
     std::thread thr4([&goods]()
         {
             while(true)
