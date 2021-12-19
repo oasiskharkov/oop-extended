@@ -7,8 +7,8 @@
 #include <sstream>
 
 class IRepository {
-    virtual void Open() = 0; // бинарная десериализация из файла
-    virtual void Save() = 0; // бинарная сериализация в файл
+    virtual void Open() = 0; // binary deserialization from file
+    virtual void Save() = 0; // binary serialization to file
 };
 
 class IMethods {

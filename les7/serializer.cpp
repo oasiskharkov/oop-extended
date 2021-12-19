@@ -93,7 +93,7 @@ double Serializer::GetAverageScore(const students::FullName& name)
 	for (const auto& st : m_group.students())
 	{
 		const auto& fname = st.fullname();
-		if (fname.surname() == name.surname() && fname.name() == name.name() && fname.patronymic() == fname.patronymic())
+		if (std::tie(fname.surname(), fname.name(), fname.patronymic()) == std::tie(name.surname(), name.name(), name.patronymic()))
 		{
 			return st.average();
 		}
@@ -107,7 +107,7 @@ std::string Serializer::GetAllInfo(const students::FullName& name)
 	{
 		const auto& fname = st.fullname();
 		std::stringstream ss;
-		if (fname.surname() == name.surname() && fname.name() == name.name() && fname.patronymic() == fname.patronymic())
+		if (std::tie(fname.surname(), fname.name(), fname.patronymic()) == std::tie(name.surname(), name.name(), name.patronymic()))
 		{
 			ss << fname.name() << " " << fname.patronymic() << " " << fname.surname() << ": " << st.average();
 			return ss.str();
