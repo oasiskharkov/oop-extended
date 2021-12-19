@@ -12,6 +12,7 @@ public:
 	void SortByPhone();
 	std::tuple<std::string, std::optional<PhoneNumber>> GetPhoneNumber(const std::string& surname) const;
 	void ChangePhoneNumber(const Person& person, const PhoneNumber& number);
+	std::pair<Person, PhoneNumber> operator [] (int index) const;
 private:
 	std::vector<std::pair<Person, PhoneNumber>> m_phoneBook;
 };

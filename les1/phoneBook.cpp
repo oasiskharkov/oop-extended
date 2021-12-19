@@ -75,3 +75,8 @@ void PhoneBook::ChangePhoneNumber(const Person& person, const PhoneNumber& numbe
 		it->second = number;
 	}
 }
+
+std::pair<Person, PhoneNumber> PhoneBook::operator[](int index) const
+{
+	return m_phoneBook.at(index);
+}
