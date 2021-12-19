@@ -2,9 +2,12 @@
 
 TEST(TestPerson, operator_less)
 {
-    Person p1{ "Kotov", "Ivan", "Ivanovich" };
-    Person p2{ "Kotov", "Ivan", "Ivanovic" };
-    ASSERT_TRUE(p2 < p1);
+    Person p1{ "Koto", "Iva", "Ivanovic" };
+    Person p2{ "Kotov", "Ivan", "Ivanovich" };
+    ASSERT_TRUE(p1.m_name < p2.m_name);
+    ASSERT_TRUE(p1.m_surname < p2.m_surname);
+    ASSERT_TRUE(p1.m_patronymic < p2.m_patronymic);
+    ASSERT_TRUE(p1 < p2);
     Person p3{ "Kozlov", "Ivan", "Ivanovic" };
     ASSERT_FALSE(p3 < p1);
 }
@@ -13,13 +16,20 @@ TEST(TestPerson, operator_equal)
 {
     Person p1{ "Kotov", "Ivan", "Ivanovich" };
     Person p2{ "Kotov", "Ivan", "Ivanovich" };
+    ASSERT_EQ(p1.m_name, p2.m_name);
+    ASSERT_EQ(p1.m_surname, p2.m_surname);
+    ASSERT_EQ(p1.m_patronymic, p2.m_patronymic);
     ASSERT_EQ(p2, p1);
 }
 
 TEST(TestPhoneNumber, operator_less)
 {
     PhoneNumber pn1{ 16, 465, "9155448", 13 };
-    PhoneNumber pn2{ 16, 466, "9155448", 13 };
+    PhoneNumber pn2{ 17, 466, "9155449", 14 };
+    ASSERT_LT(pn1.m_addNumber, pn2.m_addNumber);
+    ASSERT_LT(pn1.m_cityCode, pn2.m_cityCode);
+    ASSERT_LT(pn1.m_countryCode, pn2.m_countryCode);
+    ASSERT_LT(pn1.m_number, pn2.m_number);
     ASSERT_LT(pn1, pn2);
     PhoneNumber pn3{ 16, 465, "9155448", 13 };
     PhoneNumber pn4{ 16, 465, "91554481", 13 };
@@ -30,6 +40,10 @@ TEST(TestPhoneNumber, operator_equal)
 {
     PhoneNumber pn1{ 16, 465, "9155448", 13 };
     PhoneNumber pn2{ 16, 465, "9155448", 13 };
+    ASSERT_EQ(pn1.m_addNumber, pn2.m_addNumber);
+    ASSERT_EQ(pn1.m_cityCode, pn2.m_cityCode);
+    ASSERT_EQ(pn1.m_countryCode, pn2.m_countryCode);
+    ASSERT_EQ(pn1.m_number, pn2.m_number);
     ASSERT_EQ(pn1, pn2);
 }
 
@@ -58,8 +72,12 @@ TEST_F(TestPhoneBook, get_phone_number)
     ASSERT_STREQ(number1.value().m_number.c_str(), "4164751");   
 }
 
-TEST_F(TestPhoneBook, сhange_phone_number)
+TEST_F(TestPhoneBook, change_phone_number)
 {
+    const auto& [result, number] = testbook->GetPhoneNumber("Kotov");
+    ASSERT_TRUE(number.has_value());
+    ASSERT_STREQ(result.c_str(), "");
+    ASSERT_STRNE(number.value().m_number.c_str(), "15344458");
     testbook->ChangePhoneNumber(Person{ "Kotov", "Vasilii", "Eliseevich" }, PhoneNumber{ 7, 123, "15344458", std::nullopt });
     const auto& [result4, number4] = testbook->GetPhoneNumber("Kotov");
 
